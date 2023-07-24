@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="webjars/jquery/3.5.1/dist/jquery.min.js"></script>
+<script>
+    function checkLogin(){
+        $.ajax({
+            type: "post",
+            url: "http://localhost:9191/login",
+            dataType: "text",
+            async: true,
+            data: $("#loginC").serialize(),
+            success: function (result){
+                if (result==="success"){
+                    window.location.href="success.html"
+                }else {
+                    alert("登录失败，请重新登录")
+                }
+            }
+
+        })
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="loginC">
+   账号<input type="text" name="userName">
+    <br>密码<input type="password" name="passWord">
+    <br><input type="button" onclick="checkLogin()" value="登录">
+</form>
+
+</body>
+</html>

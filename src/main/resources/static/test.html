@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="webjars/jquery/3.5.1/dist/jquery.min.js"></script>
+<script>
+    function checkLogin(){
+        let userName = $("input[name='userName']").val()
+        let passWord = $("input[name='passWord']").val()
+        $.ajax({
+            type: "post",
+            url: "http://localhost:9191/login",
+            dataType: "text",
+            async: true,
+            data: {
+                userName: userName,
+                passWord: passWord
+            },
+            success: function (result){
+                if (result==="success"){
+                    window.location.href="success.html"
+                }else {
+                    alert("登录失败，请重新登录")
+                }
+            }
+
+        })
+    }
+</script>
+<body>
+<div style="width: 350px;
+    height: 280px;background-color: black;
+    margin: 200px auto;padding:1px 1px 1px 1px;
+    border-radius:10px;">
+    <div style="width: 350px;
+    height: 280px;background-color: chartreuse;
+    border-radius:10px;">
+        <div style="font-size: xx-large;
+        text-align: center;padding-top: 20px;
+        padding-bottom: 20px">用户登陆
+        </div>
+        <div style="width: 310px;
+        height: 40px;margin:10px auto;
+        font-size:x-large;">
+            账号:<input type="text" style="width: 240px;
+            height: 28px;
+            font-size: large;margin-left: 5px;
+            " name="userName" ></div>
+        <div style="width: 310px;
+        height: 40px;margin:10px auto;
+        font-size:x-large;">
+            密码:<input type="text" style="width: 240px;
+            height: 28px;
+            font-size: large;margin-left: 5px;
+            " name="passWord"></div>
+        <div id="loginC" style="text-align: center; font-size: x-large;">
+            <input type="button" onclick="checkLogin()" value="登录">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
